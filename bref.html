@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Brief Card</title>
+  <style>
+    :root {
+      --color-bg-card: #F5F6FF;
+      --color-primary: #6C4CF4;
+      --color-primary-soft: #E8E6FF;
+      --color-secondary-soft: #DDEBFF;
+      --color-accent-soft: #FFE7D6;
+      --color-text-main: #232445;
+      --color-text-sub: #4A4E74;
+      --radius-card: 24px;
+      --radius-pill: 999px;
+    }
+
+    body {
+      margin: 0;
+      padding: 40px;
+      background: #ffffff;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+      display: flex;
+      justify-content: center;
+    }
+
+    .brief-card {
+      max-width: 960px;
+      padding: 24px 28px;
+      background: var(--color-bg-card);
+      border-radius: var(--radius-card);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .brief-card__header {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .brief-card__title {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--color-text-main);
+      margin: 0;
+    }
+
+    .brief-card__description {
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--color-text-sub);
+      margin: 0;
+    }
+
+    .brief-card__section {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .brief-card__section-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-text-main);
+      margin: 0;
+    }
+
+    .brief-card__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 12px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .tag--primary {
+      background: var(--color-primary-soft);
+      color: var(--color-primary);
+    }
+
+    .tag--secondary {
+      background: var(--color-secondary-soft);
+      color: #2452A3;
+    }
+
+    .tag--accent {
+      background: var(--color-accent-soft);
+      color: #C7561D;
+    }
+
+    /* Pay + Timeline */
+    .brief-card__meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .brief-card__meta-card {
+      flex: 0 0 200px;
+      background: #FFFFFF;
+      border-radius: 16px;
+      padding: 12px 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .brief-card__meta-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-primary);
+      margin-bottom: 4px;
+    }
+
+    .brief-card__meta-value {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--color-text-main);
+    }
+
+    .brief-card__meta-desc {
+      font-size: 12px;
+      color: var(--color-text-sub);
+    }
+
+    /* Footer */
+    .brief-card__footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .brief-card__brand {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      font-size: 12px;
+      color: var(--color-text-sub);
+    }
+
+    .brief-card__actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 13px;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn--primary {
+      background: var(--color-primary);
+      color: #FFFFFF;
+    }
+
+    .btn--ghost {
+      background: transparent;
+      color: var(--color-primary);
+      border: 1px solid var(--color-primary-soft);
+    }
+  </style>
+</head>
+<body>
+  <div class="brief-card">
+    <header class="brief-card__header">
+      <h2 class="brief-card__title">Brief</h2>
+      <p class="brief-card__description">
+        Dr.Lean is looking for UGC creators in the beauty niche to produce authentic vertical videos for TikTok / Reels, focusing on unboxing, styling and product promotion.
+      </p>
+    </header>
+
+    <section class="brief-card__section">
+      <h3 class="brief-card__section-title">Deliverables</h3>
+      <div class="brief-card__tags">
+        <span class="tag tag--primary">1 vertical video (15–60s)</span>
+        <span class="tag tag--primary">Unboxing</span>
+        <span class="tag tag--primary">Styling</span>
+        <span class="tag tag--primary">Product promotion</span>
+      </div>
+    </section>
+
+    <section class="brief-card__section">
+      <h3 class="brief-card__section-title">Creator Requirements</h3>
+      <div class="brief-card__tags">
+        <span class="tag tag--secondary">Beauty niche creator</span>
+        <span class="tag tag--secondary">Female preferred</span>
+        <span class="tag tag--secondary">Age 18–35</span>
+        <span class="tag tag--secondary">Stable engagement</span>
+      </div>
+    </section>
+
+    <section class="brief-card__section">
+      <h3 class="brief-card__section-title">Content Requirements</h3>
+      <div class="brief-card__tags">
+        <span class="tag tag--accent">Authentic UGC style</span>
+        <span class="tag tag--accent">K-beauty tone</span>
+        <span class="tag tag--accent">Natural lighting</span>
+        <span class="tag tag--accent">Clean aesthetic</span>
+      </div>
+    </section>
+
+    <section class="brief-card__meta">
+      <div class="brief-card__meta-card">
+        <div class="brief-card__meta-label">Compensation</div>
+        <div class="brief-card__meta-value">$450 / video</div>
+        <div class="brief-card__meta-desc">Paid per deliverable</div>
+      </div>
+      <div class="brief-card__meta-card">
+        <div class="brief-card__meta-label">Timeline</div>
+        <div class="brief-card__meta-value">2 weeks</div>
+        <div class="brief-card__meta-desc">After receiving product</div>
+      </div>
+    </section>
+
+    <footer class="brief-card__footer">
+      <div class="brief-card__brand">
+        <span>Brand: Dr.Lean</span>
+        <span>Source: Reddit r/UGCcreators</span>
+      </div>
+      <div class="brief-card__actions">
+        <button class="btn btn--primary">I’m interested</button>
+        <button class="btn btn--ghost">Not interested</button>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
