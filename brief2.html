@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Korean Beauty Brief</title>
+  <style>
+    :root {
+      --color-bg: #edeff4;
+      --color-card: #ffffff;
+      --color-card-soft: #f6f8ff;
+      --color-primary: #5b45f5;
+      --color-accent: #ff8b5c;
+      --color-text-main: #151833;
+      --color-text-sub: #6d708f;
+      --radius-card: 28px;
+      --shadow-soft: 0 24px 45px rgba(21, 24, 51, 0.08);
+      --color-primary-soft: #E8E6FF;
+      --color-secondary-soft: #DDEBFF;
+      --color-accent-soft: #FFE7D6;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 32px;
+      font-family: "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      background: var(--color-bg);
+      color: var(--color-text-main);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .app-layout {
+      width: min(1200px, 100%);
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 28px;
+    }
+
+    .assistant-panel {
+      background: var(--color-card);
+      border-radius: 32px;
+      padding: 28px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .assistant-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .assistant-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      background: linear-gradient(160deg, #77a5ff, #7f6af7);
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    .assistant-brand span {
+      font-size: 14px;
+      color: var(--color-text-sub);
+    }
+
+    .assistant-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .assistant-nav button {
+      background: transparent;
+      border: none;
+      font-size: 13px;
+      color: var(--color-text-sub);
+      text-align: left;
+      padding: 8px 0;
+      cursor: pointer;
+    }
+
+    .assistant-card {
+      background: var(--color-card-soft);
+      border-radius: 24px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .assistant-card__title {
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .assistant-card__message {
+      background: #f2f5ff;
+      border-radius: 20px;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: var(--color-text-sub);
+    }
+
+    .assistant-conversation {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 0 4px;
+    }
+
+    .message {
+      display: flex;
+      gap: 12px;
+    }
+
+    .message--assistant {
+      flex-direction: row;
+    }
+
+    .message--user {
+      flex-direction: row-reverse;
+      text-align: right;
+    }
+
+    .message__avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #e4e8ff;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 600;
+      color: var(--color-primary);
+    }
+
+    .message__bubble {
+      padding: 12px 16px;
+      border-radius: 18px;
+      background: #f6f4ff;
+      color: var(--color-text-sub);
+      font-size: 13px;
+      line-height: 1.5;
+      max-width: 220px;
+    }
+
+    .message--user .message__bubble {
+      background: #553ff5;
+      color: white;
+    }
+
+    .assistant-cta {
+      margin-top: auto;
+      background: #141931;
+      color: white;
+      border-radius: 26px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .assistant-cta button {
+      border: none;
+      background: white;
+      color: #141931;
+      font-weight: 600;
+      border-radius: 999px;
+      padding: 10px 18px;
+      cursor: pointer;
+    }
+
+    /* Right side brief */
+    .brief-panel {
+      background: var(--color-card);
+      border-radius: 36px;
+      padding: 36px 40px;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .brief-toolbar {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brief-toolbar__actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .icon-button {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      border: 1px solid #eff0f5;
+      background: white;
+      cursor: pointer;
+      font-size: 16px;
+      color: var(--color-text-sub);
+    }
+
+    .brief-header {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .brief-header__date {
+      font-size: 13px;
+      color: var(--color-text-sub);
+    }
+
+    .brief-header__title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brief-header__title {
+      font-size: 28px;
+      margin: 0;
+    }
+
+    .contact-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 10px 24px;
+      background: var(--color-primary);
+      color: white;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: filter 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .contact-btn:hover {
+      filter: brightness(1.05);
+    }
+
+    .brief-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .pill--primary {
+      background: rgba(91, 69, 245, 0.1);
+      color: var(--color-primary);
+    }
+
+    .pill--danger {
+      background: rgba(255, 139, 92, 0.15);
+      color: var(--color-accent);
+    }
+
+    .steps-card {
+      background: var(--color-card-soft);
+      border-radius: 28px;
+      padding: 24px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .steps-card h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .steps-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .steps-list li {
+      display: flex;
+      gap: 16px;
+    }
+
+    .step-index {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: white;
+      color: var(--color-primary);
+      font-weight: 600;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid rgba(91, 69, 245, 0.25);
+      flex-shrink: 0;
+    }
+
+    .step-body {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .step-title {
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .step-note {
+      margin: 0;
+      font-size: 13px;
+      color: var(--color-text-sub);
+    }
+
+    .brief-body {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .brief-text {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--color-text-sub);
+      margin: 0;
+    }
+
+    /* Tags (from brief card style) */
+    .brief-tags-section {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .brief-tags-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-text-main);
+      margin: 0;
+    }
+
+    .brief-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .tag--primary {
+      background: var(--color-primary-soft);
+      color: var(--color-primary);
+    }
+
+    .tag--secondary {
+      background: var(--color-secondary-soft);
+      color: #2452A3;
+    }
+
+    .tag--accent {
+      background: var(--color-accent-soft);
+      color: #C7561D;
+    }
+
+    .brief-tags-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .brief-tags-group-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-text-sub);
+    }
+
+    .grid-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .grid-card {
+      background: var(--color-card-soft);
+      border-radius: 20px;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .grid-card span {
+      font-size: 13px;
+      color: var(--color-text-sub);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .grid-card strong {
+      font-size: 20px;
+      color: var(--color-text-main);
+    }
+
+    .grid-card small {
+      font-size: 12px;
+      color: var(--color-text-sub);
+    }
+
+    .brief-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .brief-actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    .outline-btn,
+    .solid-btn {
+      border-radius: 999px;
+      padding: 12px 28px;
+      border: 1px solid transparent;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .solid-btn {
+      background: var(--color-primary);
+      color: white;
+    }
+
+    .outline-btn {
+      background: transparent;
+      border-color: rgba(21, 24, 51, 0.12);
+      color: var(--color-text-main);
+    }
+
+    @media (max-width: 1080px) {
+      body {
+        padding: 24px;
+      }
+
+      .app-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .assistant-panel {
+        order: 2;
+      }
+
+      .brief-panel {
+        order: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-layout">
+    <aside class="assistant-panel" id="conversation">
+      <div class="assistant-brand">
+        <div class="assistant-logo">S</div>
+        <div>
+          <strong>Creaseed</strong>
+          <span>Intelligent assistant</span>
+        </div>
+      </div>
+
+      <nav class="assistant-nav">
+        <button>Dashboard</button>
+        <button>Opportunities</button>
+        <button>Messages</button>
+        <button>Tasks</button>
+      </nav>
+
+      <div class="assistant-card">
+        <p class="assistant-card__title">Latest update</p>
+        <p class="assistant-card__message">
+          We established a search order and the AI team is reviewing the latest Korean beauty briefs for you.
+        </p>
+      </div>
+
+      <div class="assistant-conversation">
+        <div class="message message--assistant">
+          <div class="message__avatar">AI</div>
+          <div class="message__bubble">
+            Okay, we are establishing a search order for you.
+          </div>
+        </div>
+        <div class="message message--assistant">
+          <div class="message__avatar">AI</div>
+          <div class="message__bubble">
+            The business AI team is working for you. This is a reflection text about the task.
+          </div>
+        </div>
+        <div class="message message--assistant">
+          <div class="message__avatar">AI</div>
+          <div class="message__bubble">
+            The task of finding orders has been completed. Search for orders through the link below.
+          </div>
+        </div>
+        <div class="message message--user">
+          <div class="message__avatar">U</div>
+          <div class="message__bubble">
+            Great! Show me the brief.
+          </div>
+        </div>
+      </div>
+
+      <div class="assistant-cta">
+        <div>
+          <strong>Message CreaSeed…</strong>
+          <div style="font-size:13px;color:rgba(255,255,255,0.7);">Creaseed is your intelligent assistant</div>
+        </div>
+        <button>Start chat</button>
+      </div>
+    </aside>
+
+    <main class="brief-panel">
+      <div class="brief-toolbar">
+        <div class="brief-toolbar__actions">
+          <button class="icon-button" aria-label="Back">←</button>
+          <button class="icon-button" aria-label="Share">🔗</button>
+        </div>
+      </div>
+
+      <header class="brief-header">
+        <span class="brief-header__date">2025 · 09 · 20 18:16</span>
+        <div class="brief-header__title-row">
+          <h1 class="brief-header__title">Korean Beauty Long-term relationship</h1>
+          <button class="contact-btn" id="contactBtn">CONTACT NOW</button>
+        </div>
+        <div class="brief-meta">
+          <span class="pill pill--primary">High Priority</span>
+          <span class="pill pill--danger">Emergency</span>
+          <span class="pill pill--primary">In progress</span>
+        </div>
+      </header>
+
+      <section class="steps-card">
+        <h3>Steps</h3>
+        <ol class="steps-list">
+          <li>
+            <div class="step-index">1</div>
+            <div class="step-body">
+              <p class="step-title">@CreaSeed Contact the brand to express interest and provide Chanuya’s portfolio.</p>
+              <p class="step-note">Focus on her beauty content and audience demographics. There are some tasks notes.</p>
+            </div>
+          </li>
+          <li>
+            <div class="step-index">2</div>
+            <div class="step-body">
+              <p class="step-title">@CreaSeed Contact the brand again to follow-up with the latest data.</p>
+              <p class="step-note">Make sure to highlight recent performance spikes.</p>
+            </div>
+          </li>
+          <li>
+            <div class="step-index">3</div>
+            <div class="step-body">
+              <p class="step-title">@User Name Create a video offline and submit it to the brand.</p>
+              <p class="step-note">If you have difficulties, tell me and I will help you.</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="brief-body">
+        <h3>Brief</h3>
+        <p class="brief-text">
+          Dr.Lean is looking for UGC creators in the beauty niche to produce authentic vertical videos for TikTok / Reels,
+          focusing on unboxing, styling and product promotion, with a Korean beauty tone and clean aesthetic. This is a
+          long-term opportunity for creators who care about quality and storytelling.
+        </p>
+
+        <div class="brief-tags-section">
+          <div class="brief-tags-group">
+            <div class="brief-tags-group-label">Deliverables</div>
+            <div class="brief-tags">
+              <span class="tag tag--primary">1 vertical video (15–60s)</span>
+              <span class="tag tag--primary">Unboxing</span>
+              <span class="tag tag--primary">Styling</span>
+              <span class="tag tag--primary">Product promotion</span>
+            </div>
+          </div>
+
+          <div class="brief-tags-group">
+            <div class="brief-tags-group-label">Creator Requirements</div>
+            <div class="brief-tags">
+              <span class="tag tag--secondary">Beauty niche creator</span>
+              <span class="tag tag--secondary">Female preferred</span>
+              <span class="tag tag--secondary">Age 18–35</span>
+              <span class="tag tag--secondary">Stable engagement</span>
+            </div>
+          </div>
+
+          <div class="brief-tags-group">
+            <div class="brief-tags-group-label">Content Requirements</div>
+            <div class="brief-tags">
+              <span class="tag tag--accent">Authentic UGC style</span>
+              <span class="tag tag--accent">K-beauty tone</span>
+              <span class="tag tag--accent">Natural lighting</span>
+              <span class="tag tag--accent">Clean aesthetic</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-meta">
+          <div class="grid-card">
+            <span>Timeline</span>
+            <strong>2 weeks</strong>
+            <small>After receiving product</small>
+          </div>
+          <div class="grid-card">
+            <span>Compensation</span>
+            <strong>$450 / video</strong>
+            <small>Paid per deliverable</small>
+          </div>
+        </div>
+
+        <h3>Why This Deal</h3>
+        <p class="brief-text">
+          This opportunity is aligned with Bokcaas’s high-quality beauty content style. The brand’s references (Mejuri, Sseaze)
+          match her visual identity and open a clear path to a potential long-term paid partnership with a Korean beauty brand
+          that fits her tone.
+        </p>
+      </section>
+
+      <footer class="brief-footer">
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <span style="font-size:13px;color:var(--color-text-sub);">Need time?</span>
+          <strong>Decide after reviewing assets</strong>
+        </div>
+        <div class="brief-actions">
+          <button class="outline-btn">Not Interested</button>
+          <button class="solid-btn">Interested</button>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    const contactBtn = document.getElementById('contactBtn');
+    const conversation = document.getElementById('conversation');
+    const emailBody = encodeURIComponent([
+      "Hi CreaSeed team,",
+      "",
+      "I would like to discuss the Korean Beauty brief.",
+      "Please let me know the next steps.",
+      "",
+      "Thank you!"
+    ].join("\n"));
+    const mailtoLink = `mailto:hello@creaseed.ai?subject=Interested%20in%20Korean%20Beauty%20Brief&body=${emailBody}`;
+
+    contactBtn.addEventListener('click', () => {
+      conversation.scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => {
+        window.location.href = mailtoLink;
+      }, 600);
+    });
+  </script>
+</body>
+</html>
