@@ -327,7 +327,22 @@
     .brief-body {
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 28px;
+    }
+
+    .brief-body h3 {
+      margin: 0 0 6px;
+      font-size: 20px;
+    }
+
+    .brief-copy {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--color-text-sub);
+      padding: 18px 22px;
+      border-radius: 24px;
+      background: var(--color-card-soft);
     }
 
     .grid-meta {
@@ -357,11 +372,79 @@
       color: var(--color-text-main);
     }
 
+    .grid-card small {
+      font-size: 12px;
+      color: var(--color-text-sub);
+    }
+
+    .requirements-showcase {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .requirement-card {
+      border-radius: 26px;
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      color: white;
+    }
+
+    .requirement-card--primary {
+      background: linear-gradient(135deg, #5b45f5, #7d63ff);
+    }
+
+    .requirement-card--secondary {
+      background: linear-gradient(135deg, #2d9ef5, #5bc8ff);
+    }
+
+    .requirement-card--accent {
+      background: linear-gradient(135deg, #ff8b5c, #ffb56b);
+    }
+
+    .requirement-card__title {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .requirement-card__subtitle {
+      font-size: 13px;
+      opacity: 0.8;
+      margin: -6px 0 0;
+    }
+
+    .chip-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      border-radius: 999px;
+      padding: 6px 12px;
+      background: rgba(255, 255, 255, 0.2);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
     .brief-text {
       font-size: 15px;
       line-height: 1.6;
       color: var(--color-text-sub);
       margin: 0;
+    }
+
+    .why-block {
+      padding: 20px 24px;
+      border-radius: 24px;
+      background: var(--color-card-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
 
     .brief-footer {
@@ -377,25 +460,35 @@
       gap: 12px;
     }
 
-    .outline-btn,
-    .solid-btn {
+    .brief-actions button {
       border-radius: 999px;
-      padding: 12px 28px;
-      border: 1px solid transparent;
+      padding: 12px 30px;
+      border: none;
       font-weight: 600;
       cursor: pointer;
       font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .brief-actions button:hover {
+      transform: translateY(-1px);
     }
 
     .solid-btn {
-      background: var(--color-primary);
+      background: linear-gradient(135deg, #5b45f5, #7d63ff);
       color: white;
+      box-shadow: 0 12px 20px rgba(91, 69, 245, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     .outline-btn {
-      background: transparent;
-      border-color: rgba(21, 24, 51, 0.12);
+      background: white;
+      border: 1px solid rgba(21, 24, 51, 0.08);
       color: var(--color-text-main);
+      box-shadow: 0 8px 18px rgba(20, 25, 49, 0.08);
     }
 
     @media (max-width: 1080px) {
@@ -526,7 +619,7 @@
 
       <section class="brief-body">
         <h3>Brief</h3>
-        <p class="brief-text">
+        <p class="brief-copy">
           Dr.Lean team is looking to build long-term relationships with creators who genuinely care about quality and storytelling in beauty content. Compensation: $450 per video. The goal is to create authentic UGC videos for their Korean beauty brand focusing on TikTok/Reels vertical placements.
         </p>
         <div class="grid-meta">
@@ -537,11 +630,6 @@
           <div class="grid-card">
             <span>Source</span>
             <strong>Reddit r/UGCcreators</strong>
-          </div>
-          <div class="grid-card">
-            <span>Deliverables</span>
-            <strong>1 vertical video (15–60s)</strong>
-            <small>Unboxing · Styling · Product promotion</small>
           </div>
           <div class="grid-card">
             <span>Timeline</span>
@@ -555,10 +643,51 @@
           </div>
         </div>
 
+        <div class="requirements-showcase">
+          <div class="requirement-card requirement-card--primary">
+            <div>
+              <p class="requirement-card__title">Deliverables</p>
+              <p class="requirement-card__subtitle">What you’ll ship</p>
+            </div>
+            <div class="chip-group">
+              <span class="chip">1 vertical video (15–60s)</span>
+              <span class="chip">Unboxing edit</span>
+              <span class="chip">Styling hook</span>
+              <span class="chip">Product call-to-action</span>
+            </div>
+          </div>
+          <div class="requirement-card requirement-card--secondary">
+            <div>
+              <p class="requirement-card__title">Creator Requirements</p>
+              <p class="requirement-card__subtitle">Who fits best</p>
+            </div>
+            <div class="chip-group">
+              <span class="chip">Beauty niche</span>
+              <span class="chip">Female preferred</span>
+              <span class="chip">Age 18–35</span>
+              <span class="chip">Stable engagement</span>
+            </div>
+          </div>
+          <div class="requirement-card requirement-card--accent">
+            <div>
+              <p class="requirement-card__title">Content Requirements</p>
+              <p class="requirement-card__subtitle">How it should feel</p>
+            </div>
+            <div class="chip-group">
+              <span class="chip">Authentic UGC style</span>
+              <span class="chip">K-beauty tone</span>
+              <span class="chip">Natural light</span>
+              <span class="chip">Clean aesthetic</span>
+            </div>
+          </div>
+        </div>
+
         <h3>Why This Deal</h3>
-        <p class="brief-text">
-          This is a medium-priority opportunity aligned with Bokcaas’s high-quality content style. The brand’s references (Mejuri, Sseaze) align with her visual identity and unlock a clear path to a potential long-term paid partnership. A valuable chance to build a relationship with a growing brand that fits her tone.
-        </p>
+        <div class="why-block">
+          <p class="brief-text">
+            This is a medium-priority opportunity aligned with Bokcaas’s high-quality content style. The brand’s references (Mejuri, Sseaze) align with her visual identity and unlock a clear path to a potential long-term paid partnership. A valuable chance to build a relationship with a growing brand that fits her tone.
+          </p>
+        </div>
       </section>
 
       <footer class="brief-footer">
@@ -567,8 +696,14 @@
           <strong>Decide after reviewing assets</strong>
         </div>
         <div class="brief-actions">
-          <button class="outline-btn">Not Interested</button>
-          <button class="solid-btn">Interested</button>
+          <button class="outline-btn">
+            <span>Not interested</span>
+            <span aria-hidden="true">✕</span>
+          </button>
+          <button class="solid-btn">
+            <span>Interested</span>
+            <span aria-hidden="true">→</span>
+          </button>
         </div>
       </footer>
     </main>
